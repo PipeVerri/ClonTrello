@@ -5,9 +5,12 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000"
+    "dev": ""
   },
   "keywords": [],
+  "exports": {
+    "./tsconfig.base.json": "./tsconfig.base.json"
+  },
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.15.1"

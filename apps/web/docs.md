@@ -1,3 +1,6 @@
+# Especificaciones tecnicas
+- ESLint para formato correcto del codigo
+- 
 # Comentarios sobre archivos
 ### tsconfig.json
 
