@@ -1,16 +1,4 @@
-# Herramientas usadas
-### Proyecto en general
-- Turborepo para tener librerias en conjunto
-- pnpm como package manager
-- Typescript como lenguaje para backend y frontend
-
-## Estructura del proyecto
-
-- En packages va a haber codigo comun, como el schema de la DB, funciones generales, etc
-- En app va a estar todo lo ejecutable
-    - En api el backend
-    - En web el frontend
-# Documentacion de archivos
+# Documentacion del package
 
 ### pnpm-workspace.yaml
 Como estoy trabajando con multiples proyectos(multiples package.json) le tengo que indicar a pnpm cuales package.json tomar

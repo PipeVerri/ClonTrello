@@ -1,3 +1,3 @@
 export default function Page() {
-  return <h1>hola</h1>;
+  return <h1 className="text-4xl font-bold">hola</h1>;
 }

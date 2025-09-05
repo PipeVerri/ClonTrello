@@ -5,10 +5,16 @@
       "cache": false,
       "persistent": true
     },
+    "lint:fix": {
+      "outputs": []
+    },
     "lint": {
       "outputs": []
     },
-    "typecheck": {
+    "check": {
+      "outputs": []
+    },
+    "check:fix": {
       "outputs": []
     },
     "build": {
