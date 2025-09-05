@@ -5,7 +5,11 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000"
+    "dev": "next dev -p 3000",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --fix .",
+    "check": "biome check .",
+    "check:fix": "biome check --fix ."
   },
   "keywords": [],
   "author": "",

@@ -2,9 +2,7 @@
   "extends": "@my/config/tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@/*": [
-        "./src/"
-      ]
+      "@/*": ["./src/"]
     },
     "allowJs": true,
     "noEmit": true,
@@ -12,18 +10,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "include": [
-    ".",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": [".", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
