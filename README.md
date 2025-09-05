@@ -1,6 +1,4 @@
 # programacion-3-2025-verri-PipeVerri
-programacion-3-2025-verri-PipeVerri created by GitHub Classroom
-
 ## Proyecto: Aplicación de Tablero de Tareas (Estilo Trello)
 
 El objetivo de este proyecto es construir una aplicación web full-stack inspirada en Trello. La aplicación permitirá a los usuarios gestionar tareas a través de un tablero interactivo con columnas y tarjetas.
