@@ -15,6 +15,7 @@ export function boardReducer(state: BoardState, action: BoardAction) {
         case "addCard": {
             const newCardId = state.cards.length;
             return {
+                ...state,
                 cards: [...state.cards, action.cardInfo],
                 containerCards: state.containerCards.map((c, i) =>
                     i === action.containerId ? [...c, newCardId] : c
@@ -23,10 +24,10 @@ export function boardReducer(state: BoardState, action: BoardAction) {
         }
         case "updateCard": {
             return {
+                ...state,
                 cards: state.cards.map((c, i) =>
                     i === action.cardId ? {...state.cards[i], [action.param]: action.value } : c
                 ),
-                containerCards: state.containerCards
             }
         }
     }
