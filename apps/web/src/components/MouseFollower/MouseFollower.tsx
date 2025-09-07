@@ -20,10 +20,10 @@ export default function MouseFollower({children, onRelease}: Props) {
             window.removeEventListener("mousemove", updatePosition);
             window.removeEventListener("mouseup", onRelease);
         }
-    }, []);
+    }, [onRelease]);
 
     return (
-        <div style={{ position: "absolute", left: position.x, top: position.y }}>
+        <div style={{ position: "absolute", left: position.x, top: position.y, pointerEvents: 'none' }}>
             {children}
         </div>
     )
