@@ -9,14 +9,13 @@ interface CardProps {
     id: number;
     state: BoardState;
     dispatch: Dispatch<BoardAction>;
-    setEditing: Setter<Editing>;
 }
 
-export default function Card({ id, state, dispatch, setEditing }: CardProps) {
+export default function Card({ id, state, dispatch }: CardProps) {
     const placeholder = "Titulo..."
 
     const handlePress = () => {
-        setEditing(oldVal => {
+        (oldVal => {
             return {
                 ...oldVal,
                 dragging: id
@@ -26,7 +25,7 @@ export default function Card({ id, state, dispatch, setEditing }: CardProps) {
 
     const data = state.cards[id];
     return (
-        <div className="bg-white rounded-md shadow-md p-2 border-0 py-3" onMouseDown={handlePress}>
+        <div className="bg-white rounded-md shadow-md p-2 border-0 py-3 w-card" onMouseDown={handlePress}>
             <input
                 type="text"
                 value={data.title}

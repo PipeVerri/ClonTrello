@@ -34,7 +34,7 @@ export default function CardContainer({ id, state, dispatch, editing, setEditing
     }
 
     return (
-        <div className="flex flex-col bg-amber-200 w-[300px] gap-2 p-4 rounded-lg drop-shadow-lg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className="flex flex-col bg-amber-200 gap-2 p-4 rounded-lg drop-shadow-lg" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             {state.containerCards[id].map((id, _) => (
                 (editing.dragging === id) ? null : <Card key={id} id={id} state={state} dispatch={dispatch} setEditing={setEditing} />
             ))}
