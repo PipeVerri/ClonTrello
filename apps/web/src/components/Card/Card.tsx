@@ -15,6 +15,16 @@ type CardProps = BaseCardProps &
     | { dragging: true; originalPlace?: null; innerRef?: (el: HTMLDivElement) => void }
   );
 
+/**
+ * Un componente que muestra la tarjeta dentro de un CardContainer y puede ser arrastrada
+ * @param id - El id de la tarjeta, el cual referencia al index del objeto cards
+ * @param state - El estado de todo el board
+ * @param dispatch - El dispatch del reducer de CardContainer
+ * @param dragging - Si la tarjeta esta siendo arrastrada o no
+ * @param originalPlace - De que container viene la tarjeta y que posicion tenia originalmente
+ * @param innerRef - Si se pasa un valor, sera usado como ref para el div interno de la tarjeta
+ * @constructor
+ */
 export default function Card({
   id,
   state,

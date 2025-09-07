@@ -6,6 +6,12 @@ interface Props {
   onRelease: () => void;
 }
 
+/**
+ * Un componente dedicado a renderizar cosas siendo arrastradas por el mouse
+ * @param children
+ * @param onRelease - La funcion a ejecutar una vez se suelte el mouse
+ * @constructor
+ */
 export default function MouseFollower({ children, onRelease }: Props) {
   const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   useEffect(() => {
@@ -24,6 +30,7 @@ export default function MouseFollower({ children, onRelease }: Props) {
     };
   }, [onRelease]);
 
+  // pointerEvents none para que los CardContainers puedan ver si el mouse esta por encima de ellos o no, y que no tape
   return (
     <div style={{ position: "absolute", left: position.x, top: position.y, pointerEvents: "none" }}>
       {children}

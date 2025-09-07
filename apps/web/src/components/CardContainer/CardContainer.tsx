@@ -10,6 +10,12 @@ interface CardContainerProps {
   dispatch: Dispatch<BoardAction>;
 }
 
+/**
+ * Un contenedor de {@link Card | cards}
+ * @param id - El id del contenedor
+ * @param state - El BoardState
+ * @param dispatch - El dispatch para BoardState
+ */
 export default function CardContainer({ id, state, dispatch }: CardContainerProps) {
   // Las refs de las tarjetas para poder saber su posicion
   const cardsRef = useRef<Record<number, HTMLDivElement | null>>({});
@@ -29,9 +35,9 @@ export default function CardContainer({ id, state, dispatch }: CardContainerProp
   const handleMouseLeave = () => {
     setMouseHovering(false);
     dispatch({ type: "updateUserActions", param: "mouseHoveringContainer", value: null });
-    //dispatch({type: "updateUserActions", param: "newIndex", value: null})
   };
 
+  // Se encarga de ver en que orden quedaria la tarjeta si se soltara en donde esta
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (mouseHovering && state.userActions.dragging != null) {

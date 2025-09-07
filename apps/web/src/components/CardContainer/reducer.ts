@@ -28,6 +28,24 @@ export type BoardAction =
   | { type: "updateUserActions"; param: keyof UserActions; value: any } // TODO: no usar any
   | { type: "updateContainerCards"; newContainerCards: number[][] };
 
+/**
+ * Reducer dedicado a cambiar el boardState
+ * @param state - Pasado por react al usar useReducer
+ * @param action - Lo que se quiere cambiar en el estado
+ * @returns El nuevo boardState
+ *
+ * @remarks
+ * Las acciones y sus argumentos son:
+ * - "addCard": Agrega una nueva tarjeta, sus argumentos son:
+ *      - "containerId": El ID del container a agregarla
+ *      - "cardInfo": La tarjeta por defecto a agregar
+ * - "updateCard": Edita una tarjeta, sus argumentos son:
+ *      - "cardId": El ID de la carta a editar
+ *      - "param": El parametro a editar
+ *      - "value": El nuevo valor a setear
+ * - "updateUserActions": Sus argumentos son iguales que updateCard pero sin el cardId
+ * - "updateContainerCards": Su unico argumento es "newContainerCards", el objeto entero reemplazado
+ */
 export function boardReducer(state: BoardState, action: BoardAction) {
   switch (action.type) {
     case "addCard": {
