@@ -1,3 +1,3 @@
-import React from "react";
+import type React from "react";
 
-export type Setter<T> = React.Dispatch<React.SetStateAction<T>>
+export type Setter<T> = React.Dispatch<React.SetStateAction<T>>;
