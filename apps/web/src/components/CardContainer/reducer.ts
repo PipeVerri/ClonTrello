@@ -2,13 +2,20 @@ export interface CardInfo {
     title: string;
 }
 
+type UserActions = {
+    dragging: number | null;
+    mouseHoveringContainer: number | null;
+}
+
 export interface BoardState {
     cards: CardInfo[];
     containerCards: number[][];
+    userActions: UserActions;
 }
 
 export type BoardAction = {type: "addCard", containerId: number, cardInfo: CardInfo}
-    | {type: "updateCard", cardId: number, param: keyof CardInfo, value: any};
+    | {type: "updateCard", cardId: number, param: keyof CardInfo, value: any}
+    | {type: "updateUserActions", param: keyof UserActions, value: any}
 
 export function boardReducer(state: BoardState, action: BoardAction) {
     switch (action.type) {
@@ -28,6 +35,15 @@ export function boardReducer(state: BoardState, action: BoardAction) {
                 cards: state.cards.map((c, i) =>
                     i === action.cardId ? {...state.cards[i], [action.param]: action.value } : c
                 ),
+            }
+        }
+        case "updateUserActions": {
+            return {
+                ...state,
+                userActions: {
+                    ...state.userActions,
+                    [action.param]: action.value,
+                }
             }
         }
     }

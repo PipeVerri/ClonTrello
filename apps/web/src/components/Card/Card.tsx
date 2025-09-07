@@ -3,7 +3,6 @@
 import {BoardAction, BoardState, CardInfo} from "../CardContainer/reducer";
 import {Dispatch, useState} from "react";
 import {Setter} from "../../utils/types";
-import {Editing} from "../../app/page";
 
 interface CardProps {
     id: number;
@@ -15,12 +14,7 @@ export default function Card({ id, state, dispatch }: CardProps) {
     const placeholder = "Titulo..."
 
     const handlePress = () => {
-        (oldVal => {
-            return {
-                ...oldVal,
-                dragging: id
-            }
-        });
+        dispatch({type: "updateUserActions", param: "dragging", value: id});
     }
 
     const data = state.cards[id];
