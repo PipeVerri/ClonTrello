@@ -120,6 +120,7 @@ export default function CardContainer({ id, state, dispatch }: CardContainerProp
                 className="bg-green-500 text-center text-lg py-2 font-semibold text-white rounded-lg shadow-lg"
                 onClick={createCard}
                 type="button"
+                aria-label="add button"
             >
                 <FontAwesomeIcon icon={faSquarePlus} size="lg" />
             </button>
