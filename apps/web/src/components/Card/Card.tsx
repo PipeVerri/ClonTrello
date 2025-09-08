@@ -1,7 +1,7 @@
-"use client";
-
 import type { Dispatch } from "react";
 import type { BoardAction, BoardState, OriginalCardPlace } from "../CardContainer/reducer";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPen} from "@fortawesome/free-solid-svg-icons";
 
 interface BaseCardProps {
   id: number;
@@ -45,7 +45,7 @@ export default function Card({
   const data = state.cards[id];
   return (
     <div
-      className="bg-white rounded-md shadow-md p-2 border-0 py-3 w-card"
+      className="bg-white rounded-md shadow-md p-2 border-0 py-3 w-card flex flex-row"
       onMouseDown={handlePress}
       ref={innerRef}
     >
@@ -62,6 +62,9 @@ export default function Card({
             className={"overflow-hidden text-ellipsis block w-full"}
             size={Math.max(placeholder.length, data.title.length)}
         />
+        <button className={"bg-green-500 p-2 rounded-lg"}>
+            <FontAwesomeIcon icon={faPen} color="white" />
+        </button>
     </div>
   );
 }
