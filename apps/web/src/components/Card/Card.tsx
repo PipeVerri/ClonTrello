@@ -43,26 +43,25 @@ export default function Card({
   };
 
   const data = state.cards[id];
-  // TODO: Considerar hacerlo un boton al div
   return (
     <div
       className="bg-white rounded-md shadow-md p-2 border-0 py-3 w-card"
       onMouseDown={handlePress}
       ref={innerRef}
     >
-      <input
-        type="text"
-        value={data.title}
-        onChange={(e) =>
-          dispatch({ type: "updateCard", cardId: id, param: "title", value: e.target.value })
-        }
-        onMouseDown={(e) => {
-          e.stopPropagation();
-        }} // Asi si me clickean, no lo captura el padre y no hago drag
-        placeholder={placeholder}
-        className={"overflow-hidden text-ellipsis block w-full"}
-        size={Math.max(placeholder.length, data.title.length)}
-      />
+        <input
+            type="text"
+            value={data.title}
+            onChange={(e) =>
+              dispatch({ type: "updateCard", cardId: id, param: "title", value: e.target.value })
+            }
+            onMouseDown={(e) => {
+              e.stopPropagation();
+            }} // Asi si me clickean, no lo captura el padre y no hago drag
+            placeholder={placeholder}
+            className={"overflow-hidden text-ellipsis block w-full"}
+            size={Math.max(placeholder.length, data.title.length)}
+        />
     </div>
   );
 }
