@@ -77,6 +77,7 @@ export default function Page() {
 							state={state}
 							dispatch={dispatch}
 							dragging={true}
+                            originalPlace={null}
 						/>
 					)}
 				</MouseFollower>
