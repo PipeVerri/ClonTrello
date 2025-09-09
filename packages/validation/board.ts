@@ -29,3 +29,8 @@ export const UpdateBoardReq = z.object({
     data: BoardDataSchema,
 });
 export type UpdateBoardReq = z.infer<typeof UpdateBoardReq>;
+
+export const QueryBoardReq = z.object({
+    id: z.string().min(1),
+})
+export type QueryBoardReq = z.infer<typeof QueryBoardReq>;

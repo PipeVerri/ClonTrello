@@ -22,3 +22,13 @@ export async function updateBoard(boardId: string, newData: Prisma.InputJsonObje
         data: { data: newData }
     })
 }
+
+export async function getBoardData(boardId: string) {
+    const board = await prisma.board.findUnique({
+        where: {id: boardId},
+    })
+    if (!board) {
+        throw new Error("Board doesn't exist")
+    }
+    return board
+}

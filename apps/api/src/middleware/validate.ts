@@ -11,7 +11,7 @@ export function validate<T extends ZodTypeAny>(schema: T, where: "body" | "query
                 issues: z.treeifyError(result.error)
             })
         }
-        (req as any)[where] = result.data; // Ponerle la version limpia
+        (res.locals as any)[`validated_${where}`] = result.data; // Ponerle la version limpia
         next();
     }
 }

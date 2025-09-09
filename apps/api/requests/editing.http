@@ -17,3 +17,31 @@ Accept: application/json
 {
   "title": 2
 }
+
+### Test seteo datos
+POST {{baseUrl}}/boards/updateBoard
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "cmfd61ycp0000gd4fbbqiiisa",
+  "data": {
+    "cards": [
+      {
+        "title": "testCard"
+      }
+    ],
+    "containers": [
+      {
+        "title": "testContainer",
+        "cards": [
+          0
+        ]
+      }
+    ],
+    "containersOrder": [0]
+  }
+}
+
+### Test de GET a un board
+GET {{baseUrl}}/boards/getBoard?id=cmfd61ycp0000gd4fbbqiiis4
