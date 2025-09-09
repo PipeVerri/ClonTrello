@@ -1,7 +1,19 @@
-POST http://localhost:8000/boards/createBoard
+@baseUrl = http://localhost:8000
+
+### Crear board
+POST {{baseUrl}}/boards/createBoard
 Content-Type: application/json
+Accept: application/json
 
 {
   "title": "New Board"
 }
 
+### Test validación incorrecta
+POST {{baseUrl}}/boards/createBoard
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": 2
+}

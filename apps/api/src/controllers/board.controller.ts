@@ -7,7 +7,7 @@ export async function createBoardHandler(req: Request, res: Response) {
         res.status(201).send({id: id})
     } catch (err) {
         console.error(err)
-        res.status(500).send("Internal server error")
+        res.status(500).send({error: err})
     }
 }
 
@@ -17,6 +17,6 @@ export async function updateBoardHandler(req: Request, res: Response) {
         res.status(201).send({status: "success"})
     } catch (err) {
         console.error(err)
-        res.status(500).send("Internal server error")
+        res.status(500).send({error: err})
     }
 }
