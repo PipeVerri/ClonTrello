@@ -1,38 +1,40 @@
+import type { Update } from "../../utils/types";
+
 export interface CardInfo {
-  title: string;
+	title: string;
 }
 
 export interface OriginalCardPlace {
-  containerId: number;
-  index: number;
+	containerId: number;
+	index: number;
 }
 
 interface BaseUserActions {
-  dragging: number | null;
+	dragging: number | null;
 }
 type UserActions = BaseUserActions &
-  (
-    | { mouseHoveringContainer: number; newIndex: number; originalCardPlace: OriginalCardPlace }
-    | { mouseHoveringContainer: null; newIndex: null; originalCardPlace: null }
-  );
+	(
+		| { mouseHoveringContainer: number; newIndex: number; originalCardPlace: OriginalCardPlace }
+		| { mouseHoveringContainer: null; newIndex: null; originalCardPlace: null }
+	);
 
 interface Container {
-    title: string;
-    cards: number[];
+	title: string;
+	cards: number[];
 }
 
 export interface BoardState {
-  cards: CardInfo[];
-  containers: Container[];
-  containersOrder: number[];
-  userActions: UserActions;
+	cards: CardInfo[];
+	containers: Container[];
+	containersOrder: number[];
+	userActions: UserActions;
 }
 
 export type BoardAction =
-  | { type: "addCard"; containerId: number; cardInfo: CardInfo }
-  | { type: "updateCard"; cardId: number; param: keyof CardInfo; value: any }
-  | { type: "updateUserActions"; param: keyof UserActions; value: any } // TODO: no usar any
-  | { type: "updateContainerCards"; containerId: number, newCards: number[] };
+	| { type: "addCard"; containerId: number; cardInfo: CardInfo }
+	| ({ type: "updateCard"; cardId: number } & Update<CardInfo>)
+	| ({ type: "updateUserActions" } & Update<UserActions>)
+	| { type: "updateContainerCards"; containerId: number; newCards: number[] };
 
 /**
  * Reducer dedicado a cambiar el boardState
@@ -53,41 +55,41 @@ export type BoardAction =
  * - "updateContainerCards": Su unico argumento es "newContainerCards", el objeto entero reemplazado
  */
 export function boardReducer(state: BoardState, action: BoardAction) {
-  switch (action.type) {
-    case "addCard": {
-      const newCardId = state.cards.length;
-      return {
-        ...state,
-        cards: [...state.cards, action.cardInfo],
-        containers: state.containers.map((c, i) =>
-            (i === action.containerId) ? {...c, cards: [...c.cards, newCardId]} : c
-        )
-      };
-    }
-    case "updateCard": {
-      return {
-        ...state,
-        cards: state.cards.map((c, i) =>
-          i === action.cardId ? { ...state.cards[i], [action.param]: action.value } : c,
-        ),
-      };
-    }
-    case "updateContainerCards": {
-      return {
-        ...state,
-        containers: state.containers.map((c, i) =>
-            (i === action.containerId) ? {...c, cards: action.newCards } : c
-        )
-      };
-    }
-    case "updateUserActions": {
-      return {
-        ...state,
-        userActions: {
-          ...state.userActions,
-          [action.param]: action.value,
-        },
-      };
-    }
-  }
+	switch (action.type) {
+		case "addCard": {
+			const newCardId = state.cards.length;
+			return {
+				...state,
+				cards: [...state.cards, action.cardInfo],
+				containers: state.containers.map((c, i) =>
+					i === action.containerId ? { ...c, cards: [...c.cards, newCardId] } : c,
+				),
+			};
+		}
+		case "updateCard": {
+			return {
+				...state,
+				cards: state.cards.map((c, i) =>
+					i === action.cardId ? { ...state.cards[i], [action.param]: action.value } : c,
+				),
+			};
+		}
+		case "updateContainerCards": {
+			return {
+				...state,
+				containers: state.containers.map((c, i) =>
+					i === action.containerId ? { ...c, cards: action.newCards } : c,
+				),
+			};
+		}
+		case "updateUserActions": {
+			return {
+				...state,
+				userActions: {
+					...state.userActions,
+					[action.param]: action.value,
+				},
+			};
+		}
+	}
 }
