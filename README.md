@@ -36,3 +36,27 @@ La aplicación se construirá siguiendo una arquitectura moderna de desarrollo w
 
 3.  **Base de Datos:**
     *   A elección, puede ser una base de datos relacional (como PostgreSQL o SQLite) o NoSQL. El modelo de datos debe soportar la relación entre tableros, columnas y tarjetas.
+
+# Documentacion del proyecto
+La documentacion se divide en:
+- Esta seccion del README donde explico la estructura del proyecto en general, las tecnologias usadas, etc.
+- Un package_docs para cada paquete documentando el paquete/parte en si
+
+## Tecnologias usadas
+### Proyecto en general
+- Turborepo para tener librerias en conjunto
+- pnpm como package manager
+- Typescript como lenguaje para backend y frontend
+### Frontend
+- NextJS como framework
+  - Para el routing, use el router que viene con NextJS
+### Administracion del proyecto
+- Linear para crear issues, milestones, etc.
+- Los nombres de rama usados fueron los otorgados por linear
+
+## Estructura del proyecto
+
+- En la carpeta packages van a haber codigo comun usado por el backend y frontend(dividio en paquetes)
+- En app va a estar todo lo ejecutable
+    - En api el backend
+    - En web el frontend
