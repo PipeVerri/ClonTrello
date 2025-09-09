@@ -1,0 +1,28 @@
+{
+  "name": "@my/db",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:visualize": "prisma studio",
+    "db:migrate": "prisma migrate dev"
+  },
+  "packageManager": "pnpm@10.15.1",
+  "dependencies": {
+    "@prisma/client": "^6.15.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.1",
+    "prisma": "^6.15.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "exports": {
+    ".": {
+      "default": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "files": ["src", "prisma"]
+}
