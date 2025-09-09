@@ -1,11 +1,10 @@
 import "@testing-library/jest-dom"
 import {render, screen, waitFor} from "@testing-library/react";
 import Card from "../src/components/Card/Card";
-import {BoardAction, boardReducer, type BoardState} from "../src/components/CardContainer/reducer";
+import {boardReducer} from "../src/components/CardContainer/reducer";
 import CardContainer from "../src/components/CardContainer/CardContainer";
 import userEvent from "@testing-library/user-event";
 import {useReducer} from "react";
-import { fireEvent } from "@testing-library/react";
 
 describe("Card", () => {
     test("correct rendering", () => {
@@ -18,7 +17,7 @@ describe("Card", () => {
     })
 })
 
-export function TestBoard() {
+function TestBoard() {
     const initialState = {
         cards: [
             {title: "test1"},

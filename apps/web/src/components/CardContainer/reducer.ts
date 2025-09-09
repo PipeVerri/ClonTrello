@@ -16,9 +16,15 @@ type UserActions = BaseUserActions &
     | { mouseHoveringContainer: null; newIndex: null; originalCardPlace: null }
   );
 
+interface Container {
+    title: string;
+    cards: number[];
+}
+
 export interface BoardState {
   cards: CardInfo[];
-  containerCards: number[][];
+  containers: Container[];
+  containersOrder: number[];
   userActions: UserActions;
 }
 
@@ -26,7 +32,7 @@ export type BoardAction =
   | { type: "addCard"; containerId: number; cardInfo: CardInfo }
   | { type: "updateCard"; cardId: number; param: keyof CardInfo; value: any }
   | { type: "updateUserActions"; param: keyof UserActions; value: any } // TODO: no usar any
-  | { type: "updateContainerCards"; newContainerCards: number[][] };
+  | { type: "updateContainerCards"; containerId: number, newCards: number[] };
 
 /**
  * Reducer dedicado a cambiar el boardState
@@ -53,9 +59,9 @@ export function boardReducer(state: BoardState, action: BoardAction) {
       return {
         ...state,
         cards: [...state.cards, action.cardInfo],
-        containerCards: state.containerCards.map((c, i) =>
-          i === action.containerId ? [...c, newCardId] : c,
-        ), // Deep copy, porque si simplemente hago [...state.containerCards] y modifico, como es una shallow copy, termino modificando los arrays internos y react anda mal(porque estoy modificando el estado in-place)
+        containers: state.containers.map((c, i) =>
+            (i === action.containerId) ? {...c, cards: [...c.cards, newCardId]} : c
+        )
       };
     }
     case "updateCard": {
@@ -69,7 +75,9 @@ export function boardReducer(state: BoardState, action: BoardAction) {
     case "updateContainerCards": {
       return {
         ...state,
-        containerCards: action.newContainerCards,
+        containers: state.containers.map((c, i) =>
+            (i === action.containerId) ? {...c, cards: action.newCards } : c
+        )
       };
     }
     case "updateUserActions": {

@@ -40,7 +40,7 @@ export default function CardContainer({ id, state, dispatch }: CardContainerProp
             const draggingId = state.userActions.dragging;
             if (!mouseHovering || draggingId == null) return;
 
-            const cards = state.containerCards[id];
+            const cards = state.containers[id].cards;
             const displayCards = cards.filter((c) => c !== draggingId); // base de cálculo y render
             let newIndex = 0;
 
@@ -67,14 +67,14 @@ export default function CardContainer({ id, state, dispatch }: CardContainerProp
 
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [mouseHovering, state.userActions.dragging, state.containerCards, id, dispatch]);
+    }, [mouseHovering, state.userActions.dragging, state.containers, id, dispatch]);
 
     function createCard() {
         const defaultCard: CardInfo = { title: "" };
         dispatch({ type: "addCard", containerId: id, cardInfo: defaultCard });
     }
 
-    const cards = state.containerCards[id];
+    const cards = state.containers[id].cards;
     const draggingId = state.userActions.dragging;
 
     // Lista "visible" que usamos tanto para calcular como para renderizar

@@ -9,7 +9,11 @@ import MouseFollower from "../components/MouseFollower/MouseFollower";
 export default function Page() {
   const [state, dispatch] = useReducer(boardReducer, {
     cards: [{ title: "test1" }, { title: "test2" }, { title: "test3" }],
-    containerCards: [[0, 1], [2]],
+    containers: [
+        {title: "container0", cards: [0, 1]},
+        {title: "container1", cards: [2]},
+    ],
+      containersOrder: [0, 1],
     userActions: {
       dragging: null,
       mouseHoveringContainer: null,
@@ -22,17 +26,19 @@ export default function Page() {
     const { mouseHoveringContainer, newIndex, originalCardPlace, dragging } =
       currentState.userActions;
     if (mouseHoveringContainer != null && dragging != null) {
-      // Borrarla de su container original
-      const removedContainerCards = currentState.containerCards.map((c, i) =>
-        i === originalCardPlace.containerId ? c.toSpliced(originalCardPlace.index, 1) : c,
-      );
-      // Ahora meterla en donde deberia ser metida
-      removedContainerCards[mouseHoveringContainer] = [
-        ...removedContainerCards[mouseHoveringContainer].slice(0, newIndex),
-        dragging, // Dragging es el ID de la carta
-        ...removedContainerCards[mouseHoveringContainer].slice(newIndex),
-      ];
-      dispatch({ type: "updateContainerCards", newContainerCards: removedContainerCards });
+        // Borrarla de su container original
+        const originalContainerCards = currentState.containers[originalCardPlace.containerId].cards;
+        const newOriginalContainerCards = originalContainerCards.toSpliced(originalCardPlace.index, 1);
+        // Meterla donde deberia ser
+        const destContainerCards = currentState.containers[mouseHoveringContainer].cards
+        const newDestContainerCards = [
+            ...destContainerCards.slice(0, newIndex),
+            dragging,
+            ...destContainerCards.slice(newIndex)
+        ]
+        // Actualizar el dispatch
+        dispatch({type: "updateContainerCards", containerId: originalCardPlace.containerId, newCards: newOriginalContainerCards})
+        dispatch({type: "updateContainerCards", containerId: mouseHoveringContainer, newCards: newDestContainerCards})
     }
     dispatch({ type: "updateUserActions", param: "dragging", value: null });
     dispatch({ type: "updateUserActions", param: "originalCardPlace", value: null });
@@ -42,9 +48,9 @@ export default function Page() {
   return (
     <div className="bg-gradient-to-br from-blue-800 to-teal-400 min-h-screen">
       <div className="flex flex-row gap-6 p-4">
-        {state.containerCards.map(
-          (_, index /* TODO: no usar el index ya que el ordenamiento cambia */) => (
-            <CardContainer id={index} key={index} state={state} dispatch={dispatch}/>
+        {state.containersOrder.map(
+          (containerId, _ /* TODO: no usar el index ya que el ordenamiento cambia */) => (
+            <CardContainer id={containerId} key={containerId} state={state} dispatch={dispatch}/>
           ),
         )}
         <MouseFollower onRelease={() => handleRelease(state)}>

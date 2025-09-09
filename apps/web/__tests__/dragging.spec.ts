@@ -25,7 +25,9 @@ test.describe('dragging', () => {
                         transition: 'opacity .6s',
                     });
                     document.body.appendChild(m);
-                    setTimeout(() => (m.style.opacity = '0'), 150);
+                    setTimeout(() => {
+                        m.style.opacity = '0'
+                    }, 150);
                     setTimeout(() => m.remove(), 800);
                 },
                 true
