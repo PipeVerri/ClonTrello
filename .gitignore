@@ -5,3 +5,5 @@ pnpm-lock.yaml
 .next/
 test-results/
 .swc/
+
+packages/db/src/generated/*

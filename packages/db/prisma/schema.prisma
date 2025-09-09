@@ -1,0 +1,46 @@
+generator client { // Como generar la interface para interactuar con la DB
+  provider = "prisma-client-js" // Usar el generador para js
+  output = "../src/generated/prisma" // A donde guardar la interface(para luego acceder a ella desde node)
+}
+
+datasource db { // Que db usar
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+model Card {
+  id Int @id // El @id lo setea como id primario
+  title String
+  index Int // El orden de las tarjetas
+
+  /*
+  - containerId: el FK
+  - container: El registro que usa prisma para registrar la relacion
+    - name: el nombre de la relacion, para poder definirla en CardContainer
+    - fields: que campos usar como FK
+    - references: que campo pasarle al "destino" para que pueda referirse a mi
+    - onDelete: que hacer cuando el "destino" se borra, Cascade es que me borre junto a el
+
+   No es necesario que la relacion sea bidireccional, pero lo hace mas conveniente
+   */
+  containerId Int
+  container CardContainer @relation(name: "containerCards", fields: [containerId], references: [id], onDelete: Cascade)
+}
+
+model CardContainer {
+  id Int @id
+  title String
+  cards Card[] @relation("containerCards")
+  index Int // En que orden estan los CardContainer
+
+  boardId String
+  board Board @relation(name: "board", fields: [boardId], references: [id], onDelete: Cascade)
+}
+
+model Board {
+  id String @id @default(cuid()) // Usar un id random de default
+  title String
+
+  cardContainers CardContainer[] @relation("board")
+
+}
