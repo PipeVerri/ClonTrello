@@ -1,8 +1,7 @@
 .idea/
 node_modules/
 .turbo/
-
-node_modules/
-apps/web/node_modules/
-apps/web/.next/
-apps/web/test-results
+pnpm-lock.yaml
+.next/
+test-results/
+.swc/

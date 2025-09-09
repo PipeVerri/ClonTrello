@@ -8,12 +8,13 @@ import { boardReducer } from "../src/components/CardContainer/reducer";
 
 describe("Card", () => {
 	test("correct rendering", () => {
-		render(
+        render(
 			<Card
 				id={0}
 				dragging={true}
+                // @ts-ignore
 				state={{
-					// @ts-expect-error - no tiene que tener el state entero
+					// @ts-ignore - no tiene que tener el state entero
 					cards: [{ title: "test" }],
 				}}
 			/>,
