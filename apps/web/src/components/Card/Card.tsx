@@ -1,7 +1,7 @@
 import type { Dispatch } from "react";
 import type { BoardAction, BoardState, OriginalCardPlace } from "../CardContainer/reducer";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPen} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faPen} from "@fortawesome/free-solid-svg-icons";
 
 interface BaseCardProps {
   id: number;
@@ -45,7 +45,7 @@ export default function Card({
   const data = state.cards[id];
   return (
     <div
-      className="bg-white rounded-md shadow-md p-2 border-0 py-3 w-card flex flex-row"
+      className="bg-white rounded-md shadow-md p-2 border-0 py-3 w-card flex flex-row gap-1"
       onMouseDown={handlePress}
       ref={innerRef}
     >
@@ -64,6 +64,9 @@ export default function Card({
         />
         <button className={"bg-green-500 p-2 rounded-lg"}>
             <FontAwesomeIcon icon={faPen} color="white" />
+        </button>
+        <button className={"bg-green-500 p-2 rounded-lg"} data-testid={"drag-button"}>
+            <FontAwesomeIcon icon={faBars} color="white" />
         </button>
     </div>
   );

@@ -44,7 +44,7 @@ export default function Page() {
       <div className="flex flex-row gap-6 p-4">
         {state.containerCards.map(
           (_, index /* TODO: no usar el index ya que el ordenamiento cambia */) => (
-            <CardContainer id={index} key={index} state={state} dispatch={dispatch} />
+            <CardContainer id={index} key={index} state={state} dispatch={dispatch}/>
           ),
         )}
         <MouseFollower onRelease={() => handleRelease(state)}>

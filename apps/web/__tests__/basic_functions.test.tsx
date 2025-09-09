@@ -18,7 +18,7 @@ describe("Card", () => {
     })
 })
 
-describe("Container", () => {
+export function TestBoard() {
     const initialState = {
         cards: [
             {title: "test1"},
@@ -37,20 +37,20 @@ describe("Container", () => {
         }
     }
 
-    function TestBoard() {
-        const [state, dispatch] = useReducer(boardReducer, initialState)
-        return (
-            <>
-                <div data-testid="container0">
-                    <CardContainer id={0} state={state} dispatch={dispatch} />
-                </div>
-                <div data-testid="container1">
-                    <CardContainer id={1} state={state} dispatch={dispatch} />
-                </div>
-            </>
-        );
-    }
+    const [state, dispatch] = useReducer(boardReducer, initialState)
+    return (
+        <>
+            <div data-testid="container0">
+                <CardContainer id={0} state={state} dispatch={dispatch} />
+            </div>
+            <div data-testid="container1">
+                <CardContainer id={1} state={state} dispatch={dispatch} />
+            </div>
+        </>
+    );
+}
 
+describe("Container", () => {
     test("correct rendering", () => {
         render(<TestBoard />)
         expect(screen.getByDisplayValue("test1")).toBeInTheDocument();
@@ -69,25 +69,4 @@ describe("Container", () => {
             expect(screen.getByDisplayValue("")).toBeInTheDocument();
         })
     })
-
-    test("card dragging", async () => {
-        render(<TestBoard />);
-
-        const input = screen.getByDisplayValue("test1");
-        const card = input.parentElement as HTMLElement;
-
-        // Use fireEvent for more predictable DOM interactions
-        fireEvent.mouseDown(card, { button: 0 });
-
-        const destContainer = screen.getByTestId("container1").children[0] as HTMLElement;
-
-        fireEvent.mouseMove(destContainer);
-        fireEvent.mouseUp(destContainer);
-
-        await waitFor(() => {
-            const updatedContainer = screen.getByTestId("container1")
-            screen.debug(updatedContainer)
-            console.log(updatedContainer);
-        });
-    });
 })

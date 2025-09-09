@@ -90,6 +90,7 @@ export default function CardContainer({ id, state, dispatch }: CardContainerProp
             className="flex flex-col bg-amber-200 min-w-[300px] gap-2 p-4 rounded-lg drop-shadow-lg"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            data-testid={`container${id}`}
         >
             {displayCards.map((cardId, i) => {
                 const ghostHere = shouldShowGhost && ghostIndex === i;
