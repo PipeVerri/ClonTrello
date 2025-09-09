@@ -19,7 +19,7 @@ interface CardContainerProps {
  */
 export default function CardContainer({ id, state, dispatch }: CardContainerProps) {
 	// Refs por cardId
-	const cardsRef = useRef<Record<number, HTMLButtonElement | null>>({});
+	const cardsRef = useRef<Record<number, HTMLDivElement | null>>({});
 	const [mouseHovering, setMouseHovering] = useState(false);
 	const [ghostIndex, setGhostIndex] = useState<number | null>(null);
 
@@ -100,7 +100,7 @@ export default function CardContainer({ id, state, dispatch }: CardContainerProp
 							id={cardId}
 							state={state}
 							dispatch={dispatch}
-							innerRef={(el: HTMLButtonElement | null) => {
+							innerRef={(el: HTMLDivElement | null) => {
 								cardsRef.current[cardId] = el;
 							}}
 							// index aquí es el índice "visible" (sin la arrastrada)

@@ -25,7 +25,11 @@ describe("Card", () => {
 function TestBoard() {
 	const initialState = {
 		cards: [{ title: "test1" }, { title: "test2" }, { title: "test3" }],
-		containerCards: [[0, 1, 2], []],
+		containers: [
+            {title: "container0", cards: [0, 1, 2]},
+            {title: "container1", cards: []},
+        ],
+        containersOrder: [0, 1],
 		userActions: {
 			dragging: null,
 			newIndex: null,

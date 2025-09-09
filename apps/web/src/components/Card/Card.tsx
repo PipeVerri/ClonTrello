@@ -13,12 +13,12 @@ type CardProps = BaseCardProps &
 		| {
 				dragging?: false;
 				originalPlace: OriginalCardPlace; // required here
-				innerRef: (el: HTMLButtonElement) => void;
+				innerRef: (el: HTMLDivElement) => void;
 		  }
 		| {
 				dragging: true;
 				originalPlace: null; // must be null here
-				innerRef?: (el: HTMLButtonElement) => void;
+				innerRef?: (el: HTMLDivElement) => void;
 		  }
 	);
 
@@ -55,11 +55,13 @@ export default function Card({
 
 	const data = state.cards[id];
 	return (
-		<button
+		// biome-ignore lint/a11y/useSemanticElements: La tarjeta tiene botones de hijos y quiero que sea toda interactiva
+		<div
 			className="bg-white rounded-md shadow-md p-2 border-0 py-3 w-card flex flex-row gap-1"
 			onMouseDown={handlePress}
 			ref={innerRef}
-			type={"button"}
+			role={"button"}
+			tabIndex={0}
 		>
 			<input
 				type="text"
@@ -89,6 +91,6 @@ export default function Card({
 			>
 				<FontAwesomeIcon icon={faBars} color="white" />
 			</button>
-		</button>
+		</div>
 	);
 }

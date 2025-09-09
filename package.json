@@ -11,7 +11,8 @@
     "lint:fix": "turbo run lint:fix",
     "check": "turbo run check",
     "check:fix": "turbo run check:fix",
-    "test": "turbo run test"
+    "test:unit": "turbo run test:unit",
+    "test:e2e": "turbo run test:e2e"
   },
   "keywords": [],
   "author": "",
