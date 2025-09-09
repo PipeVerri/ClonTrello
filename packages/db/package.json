@@ -1,0 +1,17 @@
+{
+  "name": "@my/config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": ""
+  },
+  "keywords": [],
+  "exports": {
+    "./tsconfig.base.json": "./tsconfig.base.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.1"
+}

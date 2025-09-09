@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/index.ts"
+  },
+  "packageManager": "pnpm@10.15.1",
+  "dependencies": {
+    "@my/db": "workspace:*",
+    "@prisma/client": "^6.15.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@my/config": "workspace:*",
+    "@types/express": "^5.0.3",
+    "@types/node": "24.3.1",
+    "prisma": "^6.15.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2"
+  },
+  "type": "module"
+}
