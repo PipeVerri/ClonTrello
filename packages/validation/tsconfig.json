@@ -1,0 +1,11 @@
+{
+  "extends": "@my/config/tsconfig.base.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "types": ["node", "jest"],
+    "strict": true,
+    "baseUrl": ".",
+    "allowImportingTsExtensions": true,
+  },
+  "include": ["src", "tests"]
+}

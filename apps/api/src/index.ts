@@ -1,14 +1,9 @@
-import express from "express"
-import boards from "./routes/board.route"
-import * as dotenv from "dotenv"
-dotenv.config()
+import {createServer} from "./app";
 
-const app = express()
-
-app.use(express.json())
-
-app.use("/boards", boards)
-
-app.listen(process.env.PORT, () => {
-    console.log(`API on http://localhost:${process.env.PORT}`);
+const port = process.env.PORT
+const app = createServer()
+app.listen(port, () => {
+    // biome-ignore lint/suspicious/noConsole: No afecta
+    console.log(`Listening on port ${port}`)
 })
+

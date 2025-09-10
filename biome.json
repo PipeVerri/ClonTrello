@@ -10,7 +10,8 @@
       "!**/coverage/**",
       "!**/build/**",
       "!**/.turbo/**",
-      "!**/public/**"
+      "!**/public/**",
+      "!**/src/generated/**"
     ]
   },
   "formatter": {

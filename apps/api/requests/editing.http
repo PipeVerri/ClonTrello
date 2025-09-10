@@ -1,6 +1,59 @@
-POST http://localhost:8000/boards/createBoard
+@baseUrl = http://localhost:8000
+
+### Crear board
+POST {{baseUrl}}/boards/createBoard
 Content-Type: application/json
+Accept: application/json
 
 {
   "title": "New Board"
 }
+
+### Test validación incorrecta
+POST {{baseUrl}}/boards/createBoard
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": 2
+}
+
+### Test seteo datos
+PUT {{baseUrl}}/boards/updateBoard
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "cmfe51lea0000gdw5qgbs7wb8",
+  "data": {
+    "cards": [
+      {
+        "title": "testCard2"
+      }
+    ],
+    "containers": [
+      {
+        "title": "testContainer",
+        "cards": [
+          0
+        ]
+      }
+    ],
+    "containersOrder": [0]
+  }
+}
+
+### Test de GET a un board
+GET {{baseUrl}}/boards/getBoard?id=cmfe51lea0000gdw5qgbs7wb8
+
+### Borrar un board
+DELETE {{baseUrl}}/boards/deleteBoard
+Content-Type: application/json
+Accept: application/json
+
+{
+    "id": "asd"
+}
+
+### Ver todos los boards
+GET {{baseUrl}}/boards/getAllBoards
