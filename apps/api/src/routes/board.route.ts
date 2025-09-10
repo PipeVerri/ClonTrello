@@ -1,7 +1,7 @@
 import {Router} from "express";
-import * as ctrl from "../controllers/board.controller";
-import {validate} from "../middleware/validate";
-import {CreateBoardReq, QueryBoardReq, UpdateBoardReq} from "packages/validation/src/board";
+import * as ctrl from "../controllers/board.controller.ts";
+import {validate} from "../middleware/validate.ts";
+import {CreateBoardReq, QueryBoardReq, UpdateBoardReq} from "@my/validation/board";
 
 const r = Router();
 

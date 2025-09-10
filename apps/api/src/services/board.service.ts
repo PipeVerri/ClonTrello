@@ -1,9 +1,9 @@
 import {prisma} from "@my/db"
-import {Prisma} from "@prisma/client"
-import {AppError} from "../utils/appError";
+import {AppError} from "../utils/appError.ts";
+import {Prisma} from "@my/db"
 
 export async function createBoard(title: string) {
-    const defaultBoard: Prisma.InputJsonObject = {
+    const defaultBoard: Prisma.JsonObject = {
         cards: [
             {title: "Test card"}
         ],
@@ -17,12 +17,13 @@ export async function createBoard(title: string) {
     return board.id
 }
 
-export async function updateBoard(boardId: string, newData: Prisma.InputJsonObject) {
+export async function updateBoard(boardId: string, newData: Prisma.JsonObject) {
     try {
         await prisma.board.update({
             where: { id: boardId },
             data: { data: newData },
         });
+        console.log("updated correct")
     } catch (err: any) {
         if (err.code === "P2025") throw new AppError("Board doesn't exist", 404);
         throw err;

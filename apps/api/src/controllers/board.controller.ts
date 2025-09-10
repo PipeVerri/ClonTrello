@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
-import {createBoard, deleteBoard, getAllBoards, getBoardData, updateBoard} from "../services/board.service";
-import {QueryBoardReq} from "packages/validation/src/board";
+import {createBoard, deleteBoard, getAllBoards, getBoardData, updateBoard} from "../services/board.service.ts";
+import {QueryBoardReq} from "@my/validation/board";
 
 export async function createBoardHandler(req: Request, res: Response) {
     const {title} = res.locals.validated_body
@@ -9,15 +9,16 @@ export async function createBoardHandler(req: Request, res: Response) {
 }
 
 export async function updateBoardHandler(req: Request, res: Response) {
-    const {id, boardData} = res.locals.validated_body
-    await updateBoard(id, boardData)
+    const {id, data} = res.locals.validated_body
+    console.log(`new board data ${data}`)
+    await updateBoard(id, data)
     res.status(201).json({status: "success"})
 }
 
 export async function getBoardHandler(req: Request<{}, any, any, QueryBoardReq>, res: Response) {
     const {id} = res.locals.validated_query
     const board = await getBoardData(id)
-    res.status(200).json({boardData: board.data})
+    res.status(200).json({data: board.data})
 }
 
 export async function deleteBoardHandler(req: Request, res: Response) {
