@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2023",
-    "module": "ESNext",
-    "lib": ["ES2023", "DOM"],
-    "jsx": "preserve",
+    "lib": ["ES2023"],
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true

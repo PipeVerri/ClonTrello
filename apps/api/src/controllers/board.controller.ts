@@ -1,7 +1,6 @@
 import {Request, Response} from 'express'
 import {createBoard, deleteBoard, getAllBoards, getBoardData, updateBoard} from "../services/board.service";
-import {QueryBoardReq} from "@my/validation/board";
-import {AppError} from "../utils/appError";
+import {QueryBoardReq} from "packages/validation/src/board";
 
 export async function createBoardHandler(req: Request, res: Response) {
     const {title} = res.locals.validated_body

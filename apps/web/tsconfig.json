@@ -14,7 +14,10 @@
 			{
 				"name": "next"
 			}
-		]
+		],
+        "jsx": "preserve",
+        "module": "ESNext",
+        "lib": ["ES2023", "DOM"]
 	},
 	"include": [".", ".next/types/**/*.ts"],
 	"exclude": ["node_modules"]
