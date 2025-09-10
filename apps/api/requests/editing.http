@@ -19,16 +19,16 @@ Accept: application/json
 }
 
 ### Test seteo datos
-POST {{baseUrl}}/boards/updateBoard
+PUT {{baseUrl}}/boards/updateBoard
 Content-Type: application/json
 Accept: application/json
 
 {
-  "id": "cmfd61ycp0000gd4fbbqiiisa",
+  "id": "cmfdz5u0p0000gdxv6qj979wx",
   "data": {
     "cards": [
       {
-        "title": "testCard"
+        "title": "testCard2"
       }
     ],
     "containers": [
@@ -44,4 +44,16 @@ Accept: application/json
 }
 
 ### Test de GET a un board
-GET {{baseUrl}}/boards/getBoard?id=cmfd61ycp0000gd4fbbqiiis4
+GET {{baseUrl}}/boards/getBoard?id=cmfdz5u0p0000gdxv6qj979wx
+
+### Borrar un board
+DELETE {{baseUrl}}/boards/deleteBoard
+Content-Type: application/json
+Accept: application/json
+
+{
+    "id": "cmfdz5u0p0000gdxv6qj979wx"
+}
+
+### Ver todos los boards
+GET {{baseUrl}}/boards/getAllBoards
