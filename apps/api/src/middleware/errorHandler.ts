@@ -1,6 +1,6 @@
-import { ErrorRequestHandler } from "express";
+import type { ErrorRequestHandler } from "express";
 
-export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     if (err?.name === "ZodError") {
         return res.status(400).json({error: "ValidationError", issues: err.issues});
     }
@@ -8,6 +8,6 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
     const status = err?.statusCode || 500;
     const message = err?.message || "Internal Server Error";
 
-    console.error(message);
+    console.error(message); // TODO: usar pino
     return res.status(status).json({error: message});
 }

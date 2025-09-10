@@ -12,9 +12,8 @@ describe("Card", () => {
 			<Card
 				id={0}
 				dragging={true}
-                // @ts-ignore
+                // @ts-expect-error - no me importa pasarle el state entero
 				state={{
-					// @ts-ignore - no tiene que tener el state entero
 					cards: [{ title: "test" }],
 				}}
 			/>,

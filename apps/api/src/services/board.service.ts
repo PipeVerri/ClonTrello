@@ -23,9 +23,10 @@ export async function updateBoard(boardId: string, newData: Prisma.JsonObject) {
             where: { id: boardId },
             data: { data: newData },
         });
-        console.log("updated correct")
-    } catch (err: any) {
-        if (err.code === "P2025") throw new AppError("Board doesn't exist", 404);
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2025") {
+            throw new AppError("Board doesn't exist", 404);
+        }
         throw err;
     }
 }
@@ -43,8 +44,10 @@ export async function deleteBoard(boardId: string) {
         await prisma.board.delete({
             where: {id: boardId},
         })
-    } catch (err: any) {
-        if (err.code === "P2025") throw new AppError("Board doesn't exist", 404);
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2025") {
+            throw new AppError("Board doesn't exist", 404);
+        }
         throw err;
     }
 }

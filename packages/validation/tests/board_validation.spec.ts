@@ -38,25 +38,25 @@ describe("Test UpdateBoardReq", () => {
     });
 
     test("Should not accept when id is missing", () => {
-        const input = { data: board } as any;
+        const input = { data: board } as unknown;
         const result = UpdateBoardReq.safeParse(input);
         expect(result.success).toBe(false);
     });
 
     test("Should not accept when data is missing", () => {
-        const input = { id: "testId" } as any;
+        const input = { id: "testId" } as unknown;
         const result = UpdateBoardReq.safeParse(input);
         expect(result.success).toBe(false);
     });
 
     test("Should not accept when id is not a string", () => {
-        const input = { id: 123, data: board } as any;
+        const input = { id: 123, data: board } as unknown;
         const result = UpdateBoardReq.safeParse(input);
         expect(result.success).toBe(false);
     });
 
     test("Should not accept when data is not an object", () => {
-        const input = { id: "testId", data: "not-an-object" } as any;
+        const input = { id: "testId", data: "not-an-object" } as unknown;
         const result = UpdateBoardReq.safeParse(input);
         expect(result.success).toBe(false);
     });
@@ -81,7 +81,7 @@ describe("Test UpdateBoardReq", () => {
             // string instead of number
             containersOrder: ["0"],
         };
-        const input = { id: "testId", data: badData as any };
+        const input = { id: "testId", data: badData as unknown };
         const result = UpdateBoardReq.safeParse(input);
         expect(result.success).toBe(false);
     });

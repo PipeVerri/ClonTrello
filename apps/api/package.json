@@ -4,7 +4,11 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --fix .",
+    "check": "biome check .",
+    "check:fix": "biome check --fix ."
   },
   "packageManager": "pnpm@10.15.1",
   "dependencies": {
